@@ -1,5 +1,6 @@
+import Base from './Base/Base.js';
 
-class Form extends Base{
+export default class Form extends Base{
     constructor(selector, index){
         super(selector, index);
     }

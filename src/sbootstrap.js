@@ -1,5 +1,9 @@
 "use strict";
 
+import Panel from './wrapper/Panel.js';
+import Tab from './wrapper/Tab.js';
+import Form from './wrapper/Form.js';
+
 var templates = [
 	"tab",
 	"panel",

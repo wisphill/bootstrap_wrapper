@@ -1,4 +1,6 @@
-class Tab extends Base{
+import Base from "./Base/Base.js";
+
+export default class Tab extends Base{
     constructor(selector, index){
         super(selector, index);
 

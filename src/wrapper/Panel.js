@@ -1,5 +1,8 @@
+//require("./Base/Base.js");
 
-class Panel extends Base{
+import Base from "./Base/Base.js";
+
+export default class Panel extends Base{
     constructor(selector, index){
         super(selector, index);
 
