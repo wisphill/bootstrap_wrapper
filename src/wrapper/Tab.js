@@ -15,7 +15,7 @@ export default class Tab extends Base{
             link: link;
             title: title;
             content: content;
-            this.getItem = function () {
+            this.Header = function () {
                 // body...
                 var a = document.createElement('a');
                 $(a).attr('href', "#tab-content-"+ tabIndex+"-item-"+itemIndex);
@@ -41,7 +41,7 @@ export default class Tab extends Base{
                 return li;
 
             };
-            this.getContent = function () {
+            this.Body = function () {
                 // body...
                 // check and active contenblock
                 var divContent = document.createElement("div");
@@ -64,9 +64,8 @@ export default class Tab extends Base{
 
     createBlock(){
         // main block and container
-        this.tab_block = document.createElement('div');
-        $(this.tab_block).attr("id", "tab" + this.index);
-        $(this.tab_block).addClass("container");
+        this.main_block = document.createElement('div');
+        $(this.main_block).attr("id", "tab" + this.index);
         this.addMainElement();
     }
 
@@ -88,19 +87,14 @@ export default class Tab extends Base{
             var tab_content = $(this.tab_item[i]).find('tab-content:first').html();
 
             var tabItem = new this.TabItem(this.index, i, $(this.tab_item[i]), tab_active, tab_link, tab_title, tab_content);
-            $(tab_content_block).append(tabItem.getContent());
+            $(tab_content_block).append(tabItem.Body());
             // re-structure
-            ul.appendChild(tabItem.getItem());
+            ul.appendChild(tabItem.Header());
         }
-        this.tab_block.append(ul);
-        this.tab_block.append(tab_content_block);
+        this.main_block.append(ul);
+        this.main_block.append(tab_content_block);
     }
 
-    tabReplacer() {
-        this.createBlock();
-        // replace
-        this.selector.replaceWith(this.tab_block);
-    }
 
     tab_item_preload(item_id) {
         // body...

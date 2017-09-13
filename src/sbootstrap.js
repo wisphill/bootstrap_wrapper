@@ -1,12 +1,18 @@
 "use strict";
 
+require('./../lib/js/bootstrap.min.js');
+
+import './../lib/css/bootstrap.css';
+import './../lib/css/tether.css';
+
 import Panel from './wrapper/Panel.js';
 import Tab from './wrapper/Tab.js';
 import Form from './wrapper/Form.js';
 
-var templates = [
-	"tab",
-	"panel",
+var component_types = [
+	Tab,
+	Panel,
+    Form
 ];
 
 $(document).ready(function() {
@@ -16,26 +22,21 @@ $(document).ready(function() {
 
 
 /**
- * Scan all templates of project
- * Check functions and templates
+ * Scan all component_types of project
+ * Check functions and component_types
  */
 function scan(){
-	for( var i = 0; i < templates.length; i++){
-		var template_item = templates[i];
-		var items = $(template_item);
+	for( var i = 0; i < component_types.length; i++){
+	    // item type
+		var template_item = component_types[i];
+		// list item
+		var items = $(template_item.name.toLowerCase());
         for (var j = 0; j < items.length; j++){
-        	// check replacer function
-        	var tabTest = new Tab($(items[j]),j);
-        	if(eval("typeof " + "tabTest."+template_item+"Replacer") == "function"){
-        		$(items[j]).index = j;
-                eval("tabTest."+template_item+"Replacer()");
-			}
-			console.log(j);	
+            $(items[j]).index = j;
+            var objectSelector = new (Function.prototype.bind.call(template_item, null, $(items[j]), j));
+            objectSelector.replacer();
         }
 	}
-	var panel = new Panel($("panel"), 0);
-	panel.replacer();
-
 }
 
 

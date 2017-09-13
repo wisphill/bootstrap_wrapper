@@ -1,3 +1,4 @@
+var webpack = require('webpack');
 var folder = __dirname;
 
 module.exports = {
@@ -10,11 +11,25 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: ['babel-loader?presets[]=es2015',
-                   // './src/wrapper/Base/Base.js'
-                    ]
+                loader: 'babel-loader?presets[]=es2015'
+            },
+            {
+                test: /\.css$/,
+                loader: [ 'style-loader', 'css-loader' ]
             }
         ]
 
-    }
+    },
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            jquery: 'jquery',
+            'window.jQuery': 'jquery',
+            tether: 'tether',
+            Tether: 'tether',
+            'window.Tether': 'tether',
+            fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+        })
+    ]
 };

@@ -10,22 +10,18 @@ export default class Panel extends Base{
             return $(this.selector).find("panel-title").html();
         };
 
+        console.log(this.panelTitle());
         this.panelBody = function () {
             return $(this.selector).find("panel-body").html();
         };
 
     }
 
-    replacer(){
-        this.createBlock();
-        this.selector.replaceWith(this.panel_block);
-    }
-
     createBlock(){
         // main block and container
-        this.panel_block = document.createElement('div');
-        $(this.panel_block).attr("id", "panel" + this.index);
-        $(this.panel_block).addClass("panel panel-default");
+        this.main_block = document.createElement('div');
+        $(this.main_block).attr("id", "panel" + this.index);
+        $(this.main_block).addClass("panel panel-default");
         this.addMainElement();
     }
 
@@ -40,8 +36,8 @@ export default class Panel extends Base{
         $(panelBody).addClass('panel-body');
         $(panelBody).html(this.panelBody());
 
-        this.panel_block.appendChild(panelTitle);
-        this.panel_block.appendChild(panelBody);
+        this.main_block.appendChild(panelTitle);
+        this.main_block.appendChild(panelBody);
 
     }
 }
