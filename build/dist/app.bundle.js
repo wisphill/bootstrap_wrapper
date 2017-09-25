@@ -10768,21 +10768,19 @@ var Tab = function (_Base) {
 
         _this.currentTabItem = 0;
 
-        _this.TabItem = function (tabIndex, itemIndex, selector, active, link, title, content) {
+        _this.TabItem = function (itemIndex, active, link, title, content) {
             // body...
-            tabIndex: tabIndex;
-            itemIndex: itemIndex;
-            selector: selector;
-            active: active;
-            link: link;
-            title: title;
-            content: content;
+            this.itemIndex = itemIndex;
+            this.active = active;
+            this.link = link;
+            this.title = title;
+            this.content = content;
             this.Header = function () {
                 // body...
                 var a = document.createElement('a');
-                $(a).attr('href', "#tab-content-" + tabIndex + "-item-" + itemIndex);
+                $(a).attr('href', "#tab-content-" + index + "-item-" + this.itemIndex);
                 $(a).attr('data-toggle', 'tab');
-                $(a).html(title);
+                $(a).html(this.title);
 
                 // check and active tab item
                 if (active != null) {
@@ -10806,8 +10804,7 @@ var Tab = function (_Base) {
                 // body...
                 // check and active contenblock
                 var divContent = document.createElement("div");
-                $(divContent).attr("id", "tab-content-" + tabIndex + "-item-" + itemIndex);
-                //console.log("tab-index  " + tabIndex + itemIndex);
+                $(divContent).attr("id", "tab-content-" + index + "-item-" + this.itemIndex);
                 if (active == "on") {
 
                     $(divContent).addClass("tab-pane fade active show");
@@ -10815,7 +10812,7 @@ var Tab = function (_Base) {
 
                     $(divContent).addClass("tab-pane fade");
                 }
-                $(divContent).html(content);
+                $(divContent).html(this.content);
                 return divContent;
             };
         };
@@ -10851,7 +10848,7 @@ var Tab = function (_Base) {
                 var tab_title = $(this.tab_item[i]).find($('tab-title')).html();
                 var tab_content = $(this.tab_item[i]).find('tab-content:first').html();
 
-                var tabItem = new this.TabItem(this.index, i, $(this.tab_item[i]), tab_active, tab_link, tab_title, tab_content);
+                var tabItem = new this.TabItem(i, tab_active, tab_link, tab_title, tab_content);
                 $(tab_content_block).append(tabItem.Body());
                 // re-structure
                 ul.appendChild(tabItem.Header());
@@ -10878,11 +10875,13 @@ exports.default = Tab;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function($) {
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _Base2 = __webpack_require__(1);
 
@@ -10902,13 +10901,57 @@ var Form = function (_Base) {
     function Form(selector, index) {
         _classCallCheck(this, Form);
 
-        return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, selector, index));
+        // define form group item
+        var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, selector, index));
+
+        _this.FormGroup = function (formGroupIndex, formGroupContent) {
+            this.formGroupIndex = formGroupIndex;
+
+            this.formGroupContent = formGroupContent;
+
+            this.Body = function () {
+                var divContent = document.createElement("div");
+                $(divContent).addClass("form-group");
+                $(divContent).attr("id", "form-group-" + index + "-item-" + formGroupIndex);
+                $(divContent).html(this.formGroupContent);
+                return divContent;
+            };
+        };
+        return _this;
     }
+
+    _createClass(Form, [{
+        key: "createBlock",
+        value: function createBlock() {
+            // main block and container
+            this.main_block = document.createElement('form');
+            $(this.main_block).attr("id", "form" + this.index);
+            $(this.main_block).addClass("form-horizontal");
+            this.addMainElement();
+        }
+    }, {
+        key: "addMainElement",
+        value: function addMainElement() {
+
+            this.formGroup = this.selector.children();
+            for (var i = 0; i < this.formGroup.length; i++) {
+                this.currentTabItem = i;
+                // properties
+                var formGroupContent = $(this.formGroup[i]).html();
+
+                console.log("Content Form +" + formGroupContent);
+                var formGroup = new this.FormGroup(i, formGroupContent);
+                // re-structure
+                this.main_block.appendChild(formGroup.Body());
+            }
+        }
+    }]);
 
     return Form;
 }(_Base3.default);
 
 exports.default = Form;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 14 */

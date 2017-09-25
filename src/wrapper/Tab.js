@@ -6,21 +6,19 @@ export default class Tab extends Base{
 
         this.currentTabItem = 0;
 
-        this.TabItem = function (tabIndex, itemIndex, selector, active, link, title, content) {
+        this.TabItem = function (itemIndex, active, link, title, content) {
             // body...
-            tabIndex: tabIndex;
-            itemIndex: itemIndex;
-            selector: selector;
-            active: active;
-            link: link;
-            title: title;
-            content: content;
+            this.itemIndex = itemIndex;
+            this.active    = active;
+            this.link      = link;
+            this.title     = title;
+            this.content   = content;
             this.Header = function () {
                 // body...
                 var a = document.createElement('a');
-                $(a).attr('href', "#tab-content-"+ tabIndex+"-item-"+itemIndex);
+                $(a).attr('href', "#tab-content-"+ index +"-item-"+ this.itemIndex);
                 $(a).attr('data-toggle', 'tab');
-                $(a).html(title);
+                $(a).html(this.title);
 
                 // check and active tab item
                 if( active != null){
@@ -45,8 +43,7 @@ export default class Tab extends Base{
                 // body...
                 // check and active contenblock
                 var divContent = document.createElement("div");
-                $(divContent).attr("id", "tab-content-"+ tabIndex+"-item-"+itemIndex);
-                //console.log("tab-index  " + tabIndex + itemIndex);
+                $(divContent).attr("id", "tab-content-"+ index +"-item-"+ this.itemIndex);
                 if (active == "on"){
 
                     $(divContent).addClass("tab-pane fade active show");
@@ -54,7 +51,7 @@ export default class Tab extends Base{
 
                     $(divContent).addClass("tab-pane fade");
                 }
-                $(divContent).html(content);
+                $(divContent).html(this.content);
                 return divContent;
             }
         }
@@ -86,7 +83,7 @@ export default class Tab extends Base{
             var tab_title   = $(this.tab_item[i]).find($('tab-title')).html();
             var tab_content = $(this.tab_item[i]).find('tab-content:first').html();
 
-            var tabItem = new this.TabItem(this.index, i, $(this.tab_item[i]), tab_active, tab_link, tab_title, tab_content);
+            var tabItem = new this.TabItem(i, tab_active, tab_link, tab_title, tab_content);
             $(tab_content_block).append(tabItem.Body());
             // re-structure
             ul.appendChild(tabItem.Header());

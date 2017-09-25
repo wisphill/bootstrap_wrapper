@@ -8,24 +8,20 @@
 </head>
 <body>
 	<div>
-	<div class="container">
-  	<h3>Tabs With Dropdown Menu</h3>
-		<ul class="nav nav-tabs">
-			<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-			<li><a data-toggle="tab" href="#home">Menu 1</a></li>
-			<li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
-			<li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
-		</ul>
-		</div>
-	</div>
-
 
 	<tab>
 		<tab-item active="on" preload="">
-			<tab-title link="#">Tab 1</tab-title>
+			<tab-title link="#">Panel</tab-title>
 			<tab-content>
-				<h3>HOME</h3>
-				<p>Some content.</p>
+				<panel>
+					<panel-title>
+						Panel Title
+					</panel-title>
+
+					<panel-body>
+						Panel Body
+					</panel-body>
+				</panel>
 			</tab-content>
 		</tab-item>
 
@@ -37,11 +33,32 @@
 			</tab-content>
 		</tab-item>
 
-		<tab-item active="">
-			<tab-title link="#">Tab 2</tab-title>
+		<tab-item active="off">
+			<tab-title link="#">Next wrapper</tab-title>
 			<tab-content>
-				<h3>TAB 3</h3>
+				<h3>TAB 2</h3>
 				<p>Some content.</p>
+			</tab-content>
+		</tab-item>
+
+		<tab-item active="">
+			<tab-title link="#">Form</tab-title>
+			<tab-content>
+				<form>
+					<form-group>
+						<label class="control-label col-sm-2" for="email">Email:</label>
+						<div class="col-sm-10">
+							<input type="email" class="form-control" id="email" placeholder="Enter email">
+						</div>
+					</form-group>
+					<form-group>
+						<label class="control-label col-sm-2" for="email">Email:</label>
+						<div class="col-sm-10">
+							<input type="email" class="form-control" id="email" placeholder="Enter email">
+						</div>
+					</form-group>
+				</form>
+
 			</tab-content>
 		</tab-item>
 	</tab>
@@ -107,15 +124,6 @@
 
 	</tab>
 
-	<panel>
-		<panel-title>
-			sfsfd
-		</panel-title>
-
-		<panel-body>
-			asdasasdsad
-		</panel-body>
-	</panel>
 
 </body>
 <!-- TODO: use npm to manager version of source code later -->
