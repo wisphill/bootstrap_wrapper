@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -9897,7 +9897,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 	return jQuery;
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)(module)))
 
 /***/ }),
 /* 1 */
@@ -9932,6 +9932,11 @@ var Base = function () {
         key: "setSelector",
         value: function setSelector(selector) {
             this.selector = selector;
+        }
+    }, {
+        key: "setMainId",
+        value: function setMainId(mainId) {
+            this.mainId = mainId;
         }
     }, {
         key: "replacer",
@@ -10076,7 +10081,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(8);
+var	fixUrls = __webpack_require__(9);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -10395,30 +10400,145 @@ function updateLink (link, options, obj) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {
 
-__webpack_require__(6);
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
-__webpack_require__(9);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Panel = __webpack_require__(11);
+var _Base2 = __webpack_require__(1);
 
-var _Panel2 = _interopRequireDefault(_Panel);
-
-var _Tab = __webpack_require__(12);
-
-var _Tab2 = _interopRequireDefault(_Tab);
-
-var _Form = __webpack_require__(13);
-
-var _Form2 = _interopRequireDefault(_Form);
+var _Base3 = _interopRequireDefault(_Base2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-__webpack_require__(14);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var component_types = [_Tab2.default, _Panel2.default, _Form2.default];
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var FormInput = function (_Base) {
+    _inherits(FormInput, _Base);
+
+    function FormInput(selector, index) {
+        _classCallCheck(this, FormInput);
+
+        var _this = _possibleConstructorReturn(this, (FormInput.__proto__ || Object.getPrototypeOf(FormInput)).call(this, selector, index));
+
+        console.log(_this.selector, "asdasdsaasdsa");
+        _this.formInputComponent = {
+            "formLabelHtmlTag": "label",
+            "formInputHtmlTag": "input"
+        };
+        return _this;
+    }
+
+    /**
+     * Create main block of form input
+     */
+
+
+    _createClass(FormInput, [{
+        key: "createBlock",
+        value: function createBlock() {
+            // main block and container
+            /*this.main_block = document.createElement('form');
+            $(this.main_block).attr("id", "form" + this.index);
+            $(this.main_block).addClass("form-horizontal");
+            this.addMainElement();*/
+            this.mainId = "adasd";
+            this.main_block = document.createElement("div");
+            $(this.main_block).append(this.formLabel());
+            $(this.main_block).append(this.formInputText());
+            console.log("Result" + this.main_block);
+        }
+
+        /*    addMainElement(){
+                this.formGroup = this.selector.children();
+                for (var i = 0; i < this.formGroup.length; i++) {
+                    this.currentTabItem = i;
+                    // properties
+                    var formGroupContent = $(this.formGroup[i]).html();
+        
+                    console.log("Content Form +" +formGroupContent);
+                    var formGroup = new this.FormGroup(i, formGroupContent);
+                    // re-structure
+                    this.main_block.appendChild(formGroup.Body());
+                }
+            }*/
+
+        /**
+         * Create form input component
+         */
+
+    }, {
+        key: "formLabel",
+        value: function formLabel() {
+            var formLabel = document.createElement(this.formInputComponent["formLabelHtmlTag"]);
+            $(formLabel).addClass("control-label col-sm-2");
+            $(formLabel).attr("id", this.mainId + "-form-label-" + this.index);
+            $(formLabel).html("Form label");
+            return formLabel;
+        }
+    }, {
+        key: "formInputText",
+        value: function formInputText() {
+            var formInputDiv = document.createElement("div");
+            $(formInputDiv).addClass("col-sm-10");
+
+            var formInputText = document.createElement(this.formInputComponent["formInputHtmlTag"]);
+            $(formInputText).addClass("form-control");
+            $(formInputText).attr("id", this.mainId + "-form-input-" + this.index);
+            $(formInputText).attr("type", "text");
+            $(formInputText).attr("placeholder", "Enter...");
+
+            formInputDiv.appendChild(formInputText);
+            return formInputDiv;
+        }
+    }]);
+
+    return FormInput;
+}(_Base3.default);
+
+exports.default = FormInput;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {
+
+__webpack_require__(7);
+
+__webpack_require__(10);
+
+var _Panel = __webpack_require__(12);
+
+var _Panel2 = _interopRequireDefault(_Panel);
+
+var _Tab = __webpack_require__(13);
+
+var _Tab2 = _interopRequireDefault(_Tab);
+
+var _Form = __webpack_require__(14);
+
+var _Form2 = _interopRequireDefault(_Form);
+
+var _FormInput = __webpack_require__(4);
+
+var _FormInput2 = _interopRequireDefault(_FormInput);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+__webpack_require__(15);
+
+var component_types = [_Tab2.default, _Panel2.default, _Form2.default, _FormInput2.default];
 
 $(document).ready(function () {
-  scan();
+	scan();
 });
 
 /**
@@ -10426,22 +10546,22 @@ $(document).ready(function () {
  * Check functions and component_types
  */
 function scan() {
-  for (var i = 0; i < component_types.length; i++) {
-    // item type
-    var template_item = component_types[i];
-    // list item
-    var items = $(template_item.name.toLowerCase());
-    for (var j = 0; j < items.length; j++) {
-      $(items[j]).index = j;
-      var objectSelector = new (Function.prototype.bind.call(template_item, null, $(items[j]), j))();
-      objectSelector.replacer();
-    }
-  }
+	for (var i = 0; i < component_types.length; i++) {
+		// item type
+		var template_item = component_types[i];
+		// list item
+		var items = $(template_item.name.toLowerCase());
+		for (var j = 0; j < items.length; j++) {
+			$(items[j]).index = j;
+			var objectSelector = new (Function.prototype.bind.call(template_item, null, $(items[j]), j))();
+			objectSelector.replacer();
+		}
+	}
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10471,13 +10591,13 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(7);
+var content = __webpack_require__(8);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -10502,7 +10622,7 @@ if(false) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -10516,7 +10636,7 @@ exports.push([module.i, "/*!\r\n * Bootstrap v4.0.0-alpha.6 (https://getbootstra
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10611,13 +10731,13 @@ module.exports = function (css) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(10);
+var content = __webpack_require__(11);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -10642,7 +10762,7 @@ if(false) {
 }
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -10656,7 +10776,7 @@ exports.push([module.i, ".tether-element, .tether-element:after, .tether-element
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10734,7 +10854,7 @@ exports.default = Panel;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10871,7 +10991,7 @@ exports.default = Tab;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10886,6 +11006,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 var _Base2 = __webpack_require__(1);
 
 var _Base3 = _interopRequireDefault(_Base2);
+
+var _FormInput = __webpack_require__(4);
+
+var _FormInput2 = _interopRequireDefault(_FormInput);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10921,7 +11045,7 @@ var Form = function (_Base) {
     }
 
     _createClass(Form, [{
-        key: "createBlock",
+        key: 'createBlock',
         value: function createBlock() {
             // main block and container
             this.main_block = document.createElement('form');
@@ -10930,7 +11054,7 @@ var Form = function (_Base) {
             this.addMainElement();
         }
     }, {
-        key: "addMainElement",
+        key: 'addMainElement',
         value: function addMainElement() {
 
             this.formGroup = this.selector.children();
@@ -10954,7 +11078,7 @@ exports.default = Form;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11790,10 +11914,10 @@ if ("undefined" == typeof jQuery) throw new Error("Bootstrap's JavaScript requir
     }, m;
   })(jQuery);
 }();
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(15)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(16)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

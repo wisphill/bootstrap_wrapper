@@ -14,10 +14,16 @@ export default class Base{
         this.selector = selector;
     }
 
+    setMainId(mainId){
+        this.mainId = mainId;
+    }
+
 
     replacer() {
         this.createBlock();
         // replace
         this.selector.replaceWith(this.main_block);
     }
+
+
 }

@@ -4,6 +4,7 @@
   },
   "devDependencies": {
     "bootstrap": "^3.3.7",
+    "casperjs": "^1.1.4",
     "css-loader": "^0.28.7",
     "grunt": "~0.4.5",
     "grunt-contrib-concat": "~0.4.0",

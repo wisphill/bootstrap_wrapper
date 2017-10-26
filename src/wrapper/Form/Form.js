@@ -1,4 +1,6 @@
-import Base from './Base/Base.js';
+import Base from './../Base/Base.js';
+
+import FormInput from './Component/FormInput.js';
 
 export default class Form extends Base{
     constructor(selector, index){

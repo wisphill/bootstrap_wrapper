@@ -7,12 +7,14 @@ import './../lib/css/tether.css';
 
 import Panel from './wrapper/Panel.js';
 import Tab from './wrapper/Tab.js';
-import Form from './wrapper/Form.js';
+import Form from './wrapper/Form/Form.js';
+import FormInput from './wrapper/Form/Component/FormInput.js';
 
 var component_types = [
 	Tab,
 	Panel,
-    Form
+    Form,
+	FormInput
 ];
 
 $(document).ready(function() {
