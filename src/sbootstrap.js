@@ -1,5 +1,7 @@
 "use strict";
 
+
+// remove
 require('./../lib/js/bootstrap.min.js');
 
 import './../lib/css/bootstrap.css';

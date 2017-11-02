@@ -7,7 +7,6 @@ export default class FormInput extends Base{
     constructor(selector, index) {
 
         super(selector, index);
-        console.log(this.selector, "asdasdsaasdsa");
         this.formInputComponent = {
             "formLabelHtmlTag": "label",
             "formInputHtmlTag": "input"
@@ -23,31 +22,16 @@ export default class FormInput extends Base{
         $(this.main_block).attr("id", "form" + this.index);
         $(this.main_block).addClass("form-horizontal");
         this.addMainElement();*/
-        this.mainId = "adasd";
+        this.mainId = "form-input-";
         this.main_block = document.createElement("div");
         $(this.main_block).append(this.formLabel());
         $(this.main_block).append(this.formInputText());
         console.log("Result" + this.main_block);
     }
 
-/*    addMainElement(){
-        this.formGroup = this.selector.children();
-        for (var i = 0; i < this.formGroup.length; i++) {
-            this.currentTabItem = i;
-            // properties
-            var formGroupContent = $(this.formGroup[i]).html();
-
-            console.log("Content Form +" +formGroupContent);
-            var formGroup = new this.FormGroup(i, formGroupContent);
-            // re-structure
-            this.main_block.appendChild(formGroup.Body());
-        }
-    }*/
-
     /**
      * Create form input component
      */
-
     formLabel(){
         var formLabel = document.createElement(this.formInputComponent["formLabelHtmlTag"]);
         $(formLabel).addClass("control-label col-sm-2");

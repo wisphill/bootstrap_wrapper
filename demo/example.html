@@ -13,15 +13,7 @@
 		<tab-item active="on" preload="">
 			<tab-title link="#">Panel</tab-title>
 			<tab-content>
-				<panel>
-					<panel-title>
-						Panel Title
-					</panel-title>
 
-					<panel-body>
-						Panel Body
-					</panel-body>
-				</panel>
 			</tab-content>
 		</tab-item>
 
@@ -44,50 +36,12 @@
 		<tab-item active="">
 			<tab-title link="#">Form</tab-title>
 			<tab-content>
-				<form>
-					<form-group>
-						<label class="control-label col-sm-2" for="email">Email:</label>
-						<div class="col-sm-10">
-							<input type="email" class="form-control" id="email" placeholder="Enter email">
-						</div>
-					</form-group>
-					<form-group>
-						<label class="control-label col-sm-2" for="email">Email:</label>
-						<div class="col-sm-10">
-							<input type="email" class="form-control" id="email" placeholder="Enter email">
-						</div>
-					</form-group>
-				</form>
 
 			</tab-content>
 		</tab-item>
 	</tab>
 
-	<tab>
-		<tab-item active="on">
-			<tab-title link="#">Tab 2.1</tab-title>
-			<tab-content>
-				<h3>HOME</h3>
-				<p>Some content. 2.1</p>
-			</tab-content>
-		</tab-item>
 
-		<tab-item active="off">
-			<tab-title link="#">Tab 2.2</tab-title>
-			<tab-content>
-				<h3>HOME</h3>
-				<p>Some content. 2.2</p>
-			</tab-content>
-		</tab-item>
-
-		<tab-item active="">
-			<tab-title link="#">Tab 2.3</tab-title>
-			<tab-content>
-				<h3>HOME</h3>
-				<p>Some content. 2.3</p>
-			</tab-content>
-		</tab-item>
-	</tab>
 
 	<tab load="data" preshow=" ref item | file load item | function item">
 		<tab-item active="on" >
@@ -126,9 +80,9 @@
 
 	<tab load="data" />
 	</div>
-	<formInput />
 
 </body>
+
 <!-- TODO: use npm to manager version of source code later -->
 <script src="../build/dist/app.bundle.js" type="text/javascript" charset="utf-8"></script>
 
