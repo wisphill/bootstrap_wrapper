@@ -10,9 +10,12 @@ export default class Panel extends Base{
             return $(this.selector).find("panel-title").html();
         };
 
-        console.log(this.panelTitle());
         this.panelBody = function () {
             return $(this.selector).find("panel-body").html();
+        };
+
+        this.panelFooter = function () {
+            return $(this.selector).find("panel-footer").html();
         };
 
     }
@@ -20,6 +23,7 @@ export default class Panel extends Base{
     createBlock(){
         // main block and container
         this.main_block = document.createElement('div');
+        this.check();
         $(this.main_block).attr("id", "panel" + this.index);
         $(this.main_block).addClass("panel panel-default");
         this.addMainElement();
@@ -36,8 +40,14 @@ export default class Panel extends Base{
         $(panelBody).addClass('panel-body');
         $(panelBody).html(this.panelBody());
 
+
+        var panelFooter = document.createElement('div');
+        $(panelFooter).addClass('panel-footer');
+        $(panelFooter).html(this.panelFooter());
+
         this.main_block.appendChild(panelTitle);
         this.main_block.appendChild(panelBody);
+        this.main_block.appendChild(panelFooter);
 
     }
 }

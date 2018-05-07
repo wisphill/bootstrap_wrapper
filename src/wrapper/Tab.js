@@ -62,6 +62,7 @@ export default class Tab extends Base{
     createBlock(){
         // main block and container
         this.main_block = document.createElement('div');
+        this.check();
         $(this.main_block).attr("id", "tab" + this.index);
         this.addMainElement();
     }
@@ -74,7 +75,7 @@ export default class Tab extends Base{
         var ul = document.createElement('ul');
         $(ul).addClass("nav nav-tabs");
 
-        this.tab_item = this.selector.children();
+        this.tab_item = $(this.selector).children();
         for (var i = 0; i < this.tab_item.length; i++) {
             this.currentTabItem = i;
             // properties
@@ -88,8 +89,8 @@ export default class Tab extends Base{
             // re-structure
             ul.appendChild(tabItem.Header());
         }
-        this.main_block.append(ul);
-        this.main_block.append(tab_content_block);
+        $(this.main_block).append(ul);
+        $(this.main_block).append(tab_content_block);
     }
 
 
@@ -97,5 +98,11 @@ export default class Tab extends Base{
         // body...
         this.selector.ready(function(){
         });
+    }
+
+    replacer2(){
+
+        this.createBlock();
+        $(this.selector).replaceWith(this.main_block);
     }
 }

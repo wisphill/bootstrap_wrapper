@@ -1,16 +1,25 @@
 "use strict";
 
+
+// remove
 require('./../lib/js/bootstrap.min.js');
 
 import './../lib/css/bootstrap.css';
 import './../lib/css/tether.css';
 
 import Panel from './wrapper/Panel.js';
+
+import Alert from './wrapper/Alert.js';
 import Tab from './wrapper/Tab.js';
 import Form from './wrapper/Form/Form.js';
 import FormInput from './wrapper/Form/Component/FormInput.js';
+import Badge from "./wrapper/Badge.js";
+import Breadcrumb from "./wrapper/Breadcrumb.js";
 
 var component_types = [
+	Alert,
+	Badge,
+	Breadcrumb,
 	Tab,
 	Panel,
     Form,
@@ -37,6 +46,7 @@ function scan(){
             $(items[j]).index = j;
             var objectSelector = new (Function.prototype.bind.call(template_item, null, $(items[j]), j));
             objectSelector.replacer();
+
         }
 	}
 }
